@@ -44,6 +44,24 @@ const HomePage = () => {
         setopen(false)
     }
 
+    const handleSort = (type) => {
+        let newUsers = [...users]
+        if (type == 'asc') {
+            newUsers = newUsers.sort(function (a, b) {
+                if (a.name < b.name) { return -1; }
+                if (a.name > b.name) { return 1; }
+                return 0;
+            })
+        } else {
+            newUsers = newUsers.sort(function (a, b) {
+                if (a.name < b.name) { return 1; }
+                if (a.name > b.name) { return -1; }
+                return 0;
+            })
+        }
+        setusers(newUsers);
+    }
+
     const handleTeamClick = (team) => {
         setcurrTeam(team)
         setopen(true)
@@ -51,7 +69,7 @@ const HomePage = () => {
 
     return (
         <div>
-            {open && <CreateGroup users={users} handleTeam={handleTeam} setopen={setopen} currTeam={currTeam} />}
+            {open && <CreateGroup users={users} handleTeam={handleTeam} setopen={setopen} currTeam={currTeam} handleSort={handleSort} />}
             <section className='cardsWrapper'>
                 {!open && < button onClick={() => setopen(!open)}>Create Team</button>}
                 {teams.map((team, index) => <Card key={index} data={team} checked={false} handleClick={handleTeamClick} />)}

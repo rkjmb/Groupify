@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { validateGroup } from '../util';
 
-const CreateGroup = ({ users, handleTeam, setopen, currTeam }) => {
+const CreateGroup = ({ users, handleTeam, setopen, currTeam, handleSort }) => {
 
     const [team, setTeam] = useState(currTeam);
     const [error, seterror] = useState(false)
@@ -80,6 +80,13 @@ const CreateGroup = ({ users, handleTeam, setopen, currTeam }) => {
                         <input placeholder='group description' value={team.desc} onChange={e => setTeamDetails('desc', e.target.value)} />
                     </div>
                 </section>
+                <div>
+                    <label>
+                        Sort by name
+                    </label>
+                    <span className='cursor' onClick={() => handleSort('asc')}>Ascending</span>
+                    <span className='cursor' onClick={() => handleSort('desc')}> Desending</span>
+                </div>
                 <section className='cardsWrapper'>
                     {users.map(user => <Card key={user.id} data={user} checked={team.members.includes(user.id)} handleClick={setUserList} />)}
                 </section>

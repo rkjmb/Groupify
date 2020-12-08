@@ -37,6 +37,8 @@ button{
 
 .cursor{
   cursor:pointer;
+  color: white;
+  margin-left: 0.5em;
 }
 
 .cardsWrapper{
